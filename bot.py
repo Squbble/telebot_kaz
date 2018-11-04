@@ -67,7 +67,7 @@ def handle_docs_photo(message):
         file_info = bot.get_file(message.document.file_id)
         downloaded_file = bot.download_file(file_info.file_path)
         bot.send_message(message.chat.id, '📝 Пожалуйста подождите, идет конвертирование текста на латиницу...')
-        src='~/telebot/telebot_kaz/docx/'+message.document.file_name;
+        src='/telebot/telebot_kaz/docx/'+message.document.file_name;
         with open(src, 'wb') as new_file:
           new_file.write(downloaded_file)
         bot.send_message(message.chat.id,'💾 Исходный размер файла: ' + format(os.path.getsize(src) / 1024 / 1024, '.2f') + 'Mb')
@@ -109,8 +109,8 @@ def handle_docs_photo(message):
             doc = open(message.document.file_name, 'rb')
             bot.send_document(chat_id,doc)
             bot.send_message(message.chat.id,'💾 Конвертированный размер файла: ' + format(os.path.getsize(message.document.file_name) / 1024 / 1024, '.2f') + 'Mb')
-            os.remove(src)
-            os.remove(message.document.file_name)
+            #os.remove(src)
+            #os.remove(message.document.file_name)
             #bot.send_document(message.chat.id, src)
 
 
@@ -139,8 +139,8 @@ def handle_docs_photo(message):
             filename = "{}.png".format(os.getpid())
             cv2.imwrite(filename, gray)
             lines = pytesseract.image_to_string(Image.open(src), lang='kaz')
-            os.remove(filename)
-            os.remove(src)
+            #os.remove(filename)
+            #os.remove(src)
             for line in lines:
                 lat = (''.join([dic.get(char, char) for char in lines]))
         bot.send_message(message.chat.id,'📋 Текст с изображения:')
