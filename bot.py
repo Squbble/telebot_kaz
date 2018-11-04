@@ -67,7 +67,7 @@ def handle_docs_photo(message):
         file_info = bot.get_file(message.document.file_id)
         downloaded_file = bot.download_file(file_info.file_path)
         bot.send_message(message.chat.id, '📝 Пожалуйста подождите, идет конвертирование текста на латиницу...')
-        src='/telebot/telebot_kaz/docx'+message.document.file_name;
+        src='/telebot/telebot_kaz/docx/'+message.document.file_name;
         with open(src, 'wb') as new_file:
           new_file.write(downloaded_file)
         bot.send_message(message.chat.id,'💾 Исходный размер файла: ' + format(os.path.getsize(src) / 1024 / 1024, '.2f') + 'Mb')
@@ -125,7 +125,7 @@ def handle_docs_photo(message):
         file_info = bot.get_file(message.photo[len(message.photo) - 1].file_id)
         downloaded_file = bot.download_file(file_info.file_path)
         bot.send_message(message.chat.id,'📝 Пожалуйста подождите, идет конвертирование текста на латиницу...')
-        src = '/telebot/telebot_kaz//img/' + file_info.file_path;
+        src = '/telebot/telebot_kaz/img/' + file_info.file_path;
         image = src
         with open(src, 'wb') as new_file:
             new_file.write(downloaded_file)
